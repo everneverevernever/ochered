@@ -20,7 +20,10 @@ def add_to_queue():
     # Добавление данных
     cursor = conn.cursor()
     entry_name_get = queue_name.get()
-    cursor.execute("""Update mytable set 'name' = ? where id = ? """, (entry_name_get, next_number))
+    insert_inf = (entry_name_get,)
+    query = (""" INSERT INTO mytable(name) VALUES (?)""")
+
+    cursor.execute(query, insert_inf)
 
     # Сохранение изменений
     conn.commit()
